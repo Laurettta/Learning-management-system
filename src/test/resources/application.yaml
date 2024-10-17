@@ -1,0 +1,32 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    show-sql: true
+
+  datasource:
+    driverClassName: org.h2.Driver
+    password: sa
+    username: sa
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+    hikari:
+      maximum-pool-size: 10
+  liquibase:
+    change-log: classpath:/test-liquibase.change-log.xml
+  h2:
+    console:
+      path: /h2-console
+      enabled: 'true'
+  sql:
+    init:
+      continue-on-error: false
+      data-locations: classpath:test-data.sql
+
+
+logging:
+  level:
+    liquibase: DEBUG
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M \(%line\)
+      - %msg%n'
