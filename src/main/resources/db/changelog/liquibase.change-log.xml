@@ -10,4 +10,21 @@
             CREATE SCHEMA IF NOT EXISTS learn;
         </sql>
     </changeSet>
+    <changeSet id="1729526291943-1" author="christopher">
+        <preConditions>
+            <not>
+                <tableExists tableName="assignments" schemaName="learn"/>
+            </not>
+        </preConditions>
+        <createTable tableName="assignments" schemaName="learn">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="assign_pkey"/>
+            </column>
+            <column name="public_id" type="uuid"/>
+            <column name="title" type="varchar(255)"/>
+            <column name="instructions" type="varchar(255)"/>
+            <column name="module_id" type="bigint"/>
+            <column name="deleted" type="boolean" defaultValue="false"/>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>

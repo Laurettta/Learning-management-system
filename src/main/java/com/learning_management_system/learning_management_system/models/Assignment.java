@@ -11,23 +11,24 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "assignments")
+@Table(name = "assignments",schema = "learn")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Assignment {
+public class Assignment extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "title")
     private String title;
 
-    @Column(length = 1000)
+    @Column(name = "instructions")
     private String instructions;
 
     @ManyToOne
-    @JoinColumn(name = "module_id", nullable = false)
+    @JoinColumn(name = "module_id")
     private Module module;
 
     @OneToMany(mappedBy = "assignment", cascade = CascadeType.ALL)
